@@ -15,11 +15,8 @@ class Sdl2pp < Formula
   depends_on "sdl2_ttf"
 
   def install
-    # ENV.deparallelize  # if your formula fails when building in parallel
-
     # Generate Makefile
-    system "cmake", "-DCMAKE_INSTALL_PREFIX=#{prefix}",
-                    "-DSDL2PP_WITH_IMAGE=ON",
+    system "cmake", "-DSDL2PP_WITH_IMAGE=ON",
                     "-DSDL2PP_WITH_MIXER=ON",
                     "-DSDL2PP_WITH_TTF=ON",
                     "-DSDL2PP_WITH_WERROR=OFF",
@@ -28,7 +25,8 @@ class Sdl2pp < Formula
                     "-DSDL2PP_WITH_TESTS=OFF",
                     "-DSDL2PP_STATIC=OFF",
                     "-DSDL2PP_ENABLE_LIVE_TESTS=OFF",
-                    ".", *std_cmake_args
+                    *std_cmake_args,
+                    "."
 
     # Install
     system "make", "install"
