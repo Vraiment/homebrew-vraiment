@@ -5,8 +5,8 @@
 class Sdl2pp < Formula
   desc "C++11 bindings/wrapper for SDL2"
   homepage "http://sdl2pp.amdmi3.ru"
-  url "https://github.com/libSDL2pp/libSDL2pp/archive/0.14.1.tar.gz"
-  sha256 "be2b2015a4127a1da280224ec3334090772ba7eaa83fc88225c9c11a0aa9a07a"
+  url "https://github.com/libSDL2pp/libSDL2pp/archive/0.15.0.tar.gz"
+  sha256 "c004b0dc1272b9e2cd97f75050480f3083d03fe04cb0d13a33de52518575fe55"
 
   depends_on "cmake" => :build
   depends_on "sdl2"
