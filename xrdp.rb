@@ -18,56 +18,20 @@ class Xrdp < Formula
   depends_on :x11
 
   def install
-    ENV.deparallelize  # if your formula fails when building in parallel
-
     # Instructions for install grabbed from:
     # https://github.com/neutrinolabs/xrdp/wiki/Building-on-OSX
     system "autoreconf", "-fiv"
+
     system "./configure",
         "PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig",
         "--prefix=#{prefix}",
         "--sysconfdir=#{prefix}/etc",
         "--enable-strict-locations" # This is highly counter intuitive
-                                    # but there is a bug in the configure file
-
-    # Replace /etc to #{prefix}/etc
-    #make_files = [
-    #    "Makefile",
-    #    "common/Makefile",
-    #    "instfiles/Makefile",
-    #    "instfiles/default/Makefile",
-    #    "instfiles/init.d/Makefile",
-    #    "instfiles/pam.d/Makefile",
-    #    "instfiles/pulse/Makefile",
-    #    "instfiles/rc.d/Makefile"
-    #]
-    #for file in make_files
-        #ohai "Updating path to \"/etc\" in #{file}"
-    #    etc_prefix = "#{prefix}".gsub("/", "\\/") + "\\/etc"
-    #    system "sed",
-    #        "-i.bak",
-    #        "s/sysconfdir = \\/etc/sysconfdir = #{etc_prefix}/g",
-    #        file
-        #inreplace "Makefile" do |file_contents|
-        #    file_contents.gsub! "sysconfdir = /etc/sysconfdir", "sysconfdir = #{prefix}/etc"
-        #end
-    #end
-    #j_etc_prefix = "#{prefix}".gsub("/", "\\/") + "\\/etc"
-    #system "sed",
-    #    "-i.bak",
-    #    "s/sysconfdir = \\/etc/sysconfdir = #{j_etc_prefix}/g",
-    #    "Makefile"
+                                    # but there is a bug in the configure file,
+                                    # this DISABLES strict locations
 
     system "make"
-    system "make","install"
-
-    # Remove unrecognized options if warned by configure
-    #system "./configure", "--disable-debug",
-    #                      "--disable-dependency-tracking",
-    #                      "--disable-silent-rules",
-    #                      "--prefix=#{prefix}"
-    # system "cmake", ".", *std_cmake_args
-    #system "make", "install" # if this fails, try separate make/make install steps
+    system "make", "install"
   end
 
   test do
