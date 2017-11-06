@@ -32,6 +32,24 @@ class Xrdp < Formula
 
     system "make"
     system "make", "install"
+
+    # Update the .ini file, not needed?
+    #config_file = "#{prefix}/etc/xrdp/xrdp.ini"
+    #ohai "Updating configuration file..."
+    #inreplace config_file, ".so", ".dylib"
+
+    # Copy & configure script, source:
+    # https://forums.macrumors.com/threads/how-to-control-your-mac-using-win-rdp-client-xrdp-compiling-guide-on-osx.1770325/
+    script_path = "#{prefix}/bin/xrdp-cmd"
+    system "cp", "instfiles/xrdp.sh", script_path
+    ohai "Updating control script..."
+    # Update paths
+    inreplace script_path, "/usr/local/sbin", "#{prefix}/sbin"
+    inreplace script_path, "/etc/xrdp", "#{prefix}/etc/xrdp"
+    # Update logic to detect running servers
+    inreplace script_path, "ps u --noheading -C xrdp | grep -q -i xrdp", "ps -A |grep -qi xrdp$"
+    inreplace script_path, "ps u --noheading -C xrdp-sesman | grep -q -i xrdp-sesman", "ps -A |grep -qi xrdp-sesman$"
+
   end
 
   test do
