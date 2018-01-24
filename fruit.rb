@@ -5,8 +5,8 @@
 class Fruit < Formula
   desc "Fruit, a dependency injection framework for C++"
   homepage "https://github.com/google/fruit/wiki"
-  url "https://github.com/google/fruit/archive/v3.0.0.tar.gz"
-  sha256 "00265a4a4464ee5c89e957fa2a477b91ba04dd2ccafba67e88a3d721b2257047"
+  url "https://github.com/google/fruit/archive/v3.1.0.tar.gz"
+  sha256 "d3307e02b8c85421290fc0c748ef2f964a9313596f963ae14176f35674d7230c"
 
   depends_on "cmake" => :build
   depends_on "boost" => :build
