@@ -20,11 +20,13 @@ class Xrdp < Formula
     # Instructions for install grabbed from:
     # https://github.com/neutrinolabs/xrdp/wiki/Building-on-OSX
 
+    # Set PKG_CONFIG_PATH variable
+    ENV.prepend_path "PKG_CONFIG_PATH", "#{Formula["openssl"].opt_lib}/pkgconfig"
+
     # Following line is equivalent to ./bootstrap
     system "autoreconf", "-fiv"
 
     system "./configure",
-        "PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig",
         "--prefix=#{prefix}",
         "--sysconfdir=#{prefix}/etc",
         "--enable-strict-locations" # This is highly counter intuitive
