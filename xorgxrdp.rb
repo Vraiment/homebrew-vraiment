@@ -19,11 +19,17 @@ class Xorgxrdp < Formula
     # Instructions for install grabbed from:
     # https://github.com/neutrinolabs/xrdp/wiki/Building-on-OSX
 
+    # Set PKG_CONFIG_PATH variable
+    ENV.prepend_path "PKG_CONFIG_PATH", "#{Formula["xrdp"].opt_lib}/pkgconfig"
+    ENV.prepend_path "PKG_CONFIG_PATH", "/opt/X11/lib/pkgconfig"
+
+    # Why is the "homebrew shim" failing?
+    ENV["CC"] = "/usr/bin/clang"
+
     # Following line is equivalent to ./bootstrap
     system "autoreconf", "-fiv"
 
     system "./configure",
-        "PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig",
         "--prefix=#{prefix}",
         "--sysconfdir=#{prefix}/etc",
         "--enable-strict-locations" # This is highly counter intuitive
