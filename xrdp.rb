@@ -5,8 +5,8 @@
 class Xrdp < Formula
   desc "xrdp: an open source RDP server"
   homepage "http://www.xrdp.org/"
-  url "https://github.com/neutrinolabs/xrdp/releases/download/v0.9.4/xrdp-0.9.4.tar.gz"
-  sha256 "059e362db550b58a108117e6538363d90f07edd0a54810affae977a6b0bb6ea7"
+  url "https://github.com/neutrinolabs/xrdp/releases/download/v0.9.5/xrdp-0.9.5.tar.gz"
+  sha256 "0c66b06204237745be3f0a75bfdd22a2b27de97740490256964bb5082efb0042"
 
   depends_on "pkgconfig" => :build
   depends_on "autoconf" => :build
