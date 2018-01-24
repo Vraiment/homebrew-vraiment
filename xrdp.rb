@@ -12,7 +12,6 @@ class Xrdp < Formula
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "libtool" => :build
-  depends_on "libtool"
   depends_on "openssl"
   depends_on "nasm"
   depends_on :x11
