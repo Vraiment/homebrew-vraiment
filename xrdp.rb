@@ -19,6 +19,8 @@ class Xrdp < Formula
   def install
     # Instructions for install grabbed from:
     # https://github.com/neutrinolabs/xrdp/wiki/Building-on-OSX
+
+    # Following line is equivalent to ./bootstrap
     system "autoreconf", "-fiv"
 
     system "./configure",
